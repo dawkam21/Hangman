@@ -1,7 +1,9 @@
 import sys
 
+
 number_of_tries = 5
-word = "barnaba"
+word = "małżeństwo"
+category = "Miłość"
 used_letters = []
 user_word = []
 
@@ -16,21 +18,24 @@ def find_indexes(word, letter):
 
 def show_state_of_game():
     print()
+    print(f"Category: {category}")
     print(user_word)
-    print(f"Pozostało prób: {number_of_tries}")
-    print(f"Użyte litery: {used_letters}")
+    print(f"{number_of_tries} Tries left: ")
+    print(f"Letters used: {used_letters}")
     print()
 
 for _ in word:
     user_word.append("_")
 
 while True:
+    show_state_of_game()
     letter = input("Pick a letter: ")
     used_letters.append(letter)
 
     found_indexes = find_indexes(word, letter)
 
     if len(found_indexes) == 0:
+        print()
         print("Word doesn't have this letter!")
         number_of_tries -= 1
 
@@ -47,4 +52,3 @@ while True:
             print(word)
             sys.exit(0)
 
-    show_state_of_game()
